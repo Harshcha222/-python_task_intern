@@ -1,0 +1,20 @@
+import requests
+
+def fetch_crypto_prices():
+    # API URL to fetch cryptocurrency prices
+    url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd"
+    
+    # Fetch the data from the API
+    response = requests.get(url)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        data = response.json()  # Parse the JSON response
+        print("Cryptocurrency Prices (in USD):")
+        print(f"Bitcoin: ${data['bitcoin']['usd']}")
+        print(f"Ethereum: ${data['ethereum']['usd']}")
+    else:
+        print("Failed to fetch data from the API.")
+
+# Example usage
+fetch_crypto_prices()
